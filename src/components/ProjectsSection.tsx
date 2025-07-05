@@ -48,6 +48,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
       skills: ["Django Auth System", "Forms", "Security fundamentals"],
       learning: "Understanding of secure user management and session handling.",
       tags: ["Authentication", "Security"],
+      imageUrl: "/images/auth-system.jpg",
       githubUrl: "https://github.com/example/auth-system",
     },
     {
