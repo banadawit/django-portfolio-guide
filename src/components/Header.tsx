@@ -50,13 +50,13 @@ const Header: React.FC<HeaderProps> = ({
     {
       icon: <Github className="w-5 h-5" />,
       href: "https://github.com/banadawit",
-      label: "GitHub",
-      username: "banadawit",
+    //   label: "GitHub",
+    //   username: "banadawit",
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
       href: "https://www.linkedin.com/in/bana-dawit-121810312/",
-      label: "LinkedIn",
+    //   label: "LinkedIn",
     },
   ];
 
@@ -122,7 +122,7 @@ const Header: React.FC<HeaderProps> = ({
             <div className="flex items-center ml-4 space-x-3 border-l border-slate-200 dark:border-slate-700 pl-4">
               {socialLinks.map((link) => (
                 <motion.div
-                  key={link.label}
+                //   key={link.label}
                   className="relative group"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.9 }}
@@ -132,11 +132,11 @@ const Header: React.FC<HeaderProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-slate-500 dark:text-slate-300 hover:text-slate-700 dark:hover:text-white transition-colors flex items-center"
-                    aria-label={link.label}
+                    // aria-label={link.label}
                   >
                     {link.icon}
                     <span className="absolute left-full ml-2 px-2 py-1 text-xs whitespace-nowrap bg-slate-800 text-white rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                      {link.username || link.label}
+                      {/* {link.username || link.label} */}
                     </span>
                   </a>
                 </motion.div>
@@ -213,14 +213,14 @@ const Header: React.FC<HeaderProps> = ({
                     <div className="flex space-x-3">
                       {socialLinks.map((link) => (
                         <motion.a
-                          key={link.label}
+                        //   key={link.label}
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
                           whileHover={{ y: -2 }}
                           whileTap={{ scale: 0.9 }}
                           className="p-2 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition"
-                          aria-label={link.label}
+                        //   aria-label={link.label}
                         >
                           {link.icon}
                         </motion.a>
