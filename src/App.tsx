@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Project } from "./types/Project";
+import IntroSection from "./components/IntroSection";
 
 function App() {
   // Dark mode state
@@ -92,7 +93,7 @@ const openModal = (project: Project) => {
       />
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
-        <section ref={sections.intro} id="intro">
+        {/* <section ref={sections.intro} id="intro">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -111,6 +112,10 @@ const openModal = (project: Project) => {
               build your best portfolio.
             </p>
           </motion.div>
+        </section> */}
+
+        <section >
+          <IntroSection />
         </section>
 
         <section ref={sections.skills} id="skills">
