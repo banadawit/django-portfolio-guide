@@ -22,7 +22,6 @@ const Header: React.FC<HeaderProps> = ({
   darkMode,
   toggleDarkMode,
   activeSection,
-  sectionRefs,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
