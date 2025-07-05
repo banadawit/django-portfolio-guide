@@ -1,4 +1,3 @@
-// src/components/ProjectsSection.tsx
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -7,10 +6,12 @@ import {
   FiBookOpen,
   FiGithub,
   FiExternalLink,
+  FiSearch,
+  FiFilter,
+  FiAlertCircle,
 } from "react-icons/fi";
 import type { Project } from "../types/Project";
 
-// Extended type for local use that includes optional popularity and lastUpdated
 interface ExtendedProject extends Project {
   popularity?: number;
   lastUpdated?: string;
@@ -26,30 +27,37 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortOption, setSortOption] = useState<string>("default");
 
-  // Project data with extended fields
   const projectsData: ExtendedProject[] = [
     {
       id: 1,
-      name: "To-Do List App",
+      name: "To-Do List Application",
       complexity: "Beginner",
       time: "1-2 days",
-      features: ["CRUD operations", "Task categorization"],
+      features: [
+        "CRUD operations",
+        "Task categorization",
+        "User-friendly interface",
+      ],
       skills: ["Models", "Forms", "ORM", "Views", "Templates"],
-      learning: "Mastery of basic application structure and data persistence.",
+      learning:
+        "Demonstrates basic application structure and data persistence.",
       tags: ["CRUD", "Productivity"],
       imageUrl: "/images/todo-app.jpg",
+      lastUpdated: "2023-10-15",
     },
     {
       id: 2,
-      name: "Login/Registration System",
+      name: "Authentication System",
       complexity: "Beginner",
       time: "1 week",
-      features: ["User authentication", "Secure login", "Password management"],
-      skills: ["Django Auth System", "Forms", "Security fundamentals"],
-      learning: "Understanding of secure user management and session handling.",
+      features: ["User registration", "Secure login", "Password reset"],
+      skills: ["Django Auth", "Form validation", "Security"],
+      learning: "Implementation of secure user management systems.",
       tags: ["Authentication", "Security"],
       imageUrl: "/images/auth-system.jpg",
       githubUrl: "https://github.com/example/auth-system",
+      popularity: 3,
+      lastUpdated: "2023-11-20",
     },
     {
       id: 3,
@@ -112,14 +120,13 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
     { value: "time", label: "Time Required" },
   ];
 
-  // Filter and sort logic
   const filteredProjects = projectsData
     .filter((project) => filter === "All" || project.complexity === filter)
     .filter(
       (project) =>
         searchQuery === "" ||
         project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (Array.isArray(project.tags) &&
+        (project.tags &&
           project.tags.some((tag) =>
             tag.toLowerCase().includes(searchQuery.toLowerCase())
           ))
@@ -137,7 +144,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
           const getTimeValue = (timeStr: string) => {
             if (timeStr.includes("day")) return parseInt(timeStr);
             if (timeStr.includes("week")) return parseInt(timeStr) * 7;
-            return parseInt(timeStr) * 30; // months
+            return parseInt(timeStr) * 30;
           };
           return getTimeValue(a.time) - getTimeValue(b.time);
         default:
@@ -145,7 +152,6 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
       }
     });
 
-  // Helper to get the image URL (falling back to imageUrl or a placeholder)
   const getImageUrl = (project: ExtendedProject) => {
     return (
       project.image || project.imageUrl || "/images/project-placeholder.jpg"
@@ -167,50 +173,52 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
         >
           <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Project Explorer
+              Django Project Explorer
             </span>
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            Filter through our curated collection of Django projects
+            Browse through various Django projects categorized by complexity and
+            features
           </p>
         </motion.div>
 
         {/* Controls */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-          {/* Search Bar */}
-          <div className="relative w-full md:w-64">
+          <div className="relative w-full md:w-72">
+            <FiSearch className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
             <input
               type="text"
-              placeholder="Search projects..."
+              placeholder="Search projects by name or tags..."
               className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <FiBookOpen className="absolute left-3 top-2.5 h-5 w-5 text-slate-400" />
           </div>
 
-          {/* Filter & Sort */}
           <div className="flex flex-wrap gap-3 w-full md:w-auto">
-            <select
-              className="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={sortOption}
-              onChange={(e) => setSortOption(e.target.value)}
-            >
-              {sortOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+            <div className="relative">
+              <FiFilter className="absolute left-3 top-2.5 h-5 w-5 text-slate-400" />
+              <select
+                className="pl-10 pr-8 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+              >
+                {sortOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {filters.map((level) => (
                 <button
                   key={level}
                   onClick={() => setFilter(level)}
                   className={`px-3 py-2 text-sm rounded-full font-medium transition-all ${
                     filter === level
-                      ? "bg-blue-600 text-white"
+                      ? "bg-blue-600 text-white shadow-md"
                       : "bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600"
                   }`}
                 >
@@ -235,19 +243,18 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
                   layout
                 >
                   <div
-                    className="h-full flex flex-col bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 border border-slate-200 dark:border-slate-700"
+                    className="h-full flex flex-col bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 border border-slate-200 dark:border-slate-700 group"
                     onClick={() => openModal(project)}
                   >
-                    {/* Project Image */}
-                    <div className="h-48 overflow-hidden">
+                    <div className="h-48 overflow-hidden relative">
                       <img
                         src={getImageUrl(project)}
                         alt={project.name}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
 
-                    {/* Project Content */}
                     <div className="p-6 flex-grow">
                       <div className="flex justify-between items-start mb-3">
                         <h3 className="text-xl font-bold text-slate-900 dark:text-white">
@@ -266,7 +273,6 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
                         </span>
                       </div>
 
-                      {/* Stats */}
                       <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mb-4">
                         <div className="flex items-center gap-1">
                           <FiClock className="h-4 w-4" />
@@ -280,10 +286,9 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
                         )}
                       </div>
 
-                      {/* Features */}
                       <div className="mb-4">
                         <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                          Features:
+                          Key Features:
                         </h4>
                         <ul className="space-y-1">
                           {project.features
@@ -299,7 +304,6 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
                         </ul>
                       </div>
 
-                      {/* Tags */}
                       {project.tags && (
                         <div className="flex flex-wrap gap-2 mt-auto">
                           {project.tags.map((tag) => (
@@ -314,18 +318,17 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
                       )}
                     </div>
 
-                    {/* Footer */}
-                    <div className="px-6 py-4 bg-slate-50 dark:bg-slate-700 border-t border-slate-200 dark:border-slate-600 flex justify-between items-center">
-                      <button className="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-800 dark:hover:text-blue-300 transition-colors">
+                    <div className="px-6 py-4 bg-slate-50 dark:bg-slate-700/50 border-t border-slate-200 dark:border-slate-600 flex justify-between items-center">
+                      <span className="text-blue-600 dark:text-blue-400 font-medium">
                         View Details
-                      </button>
+                      </span>
                       <div className="flex gap-3">
                         {project.githubUrl && (
                           <a
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+                            className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
                             onClick={(e) => e.stopPropagation()}
                           >
                             <FiGithub className="h-5 w-5" />
@@ -336,7 +339,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
                             href={project.liveDemoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+                            className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
                             onClick={(e) => e.stopPropagation()}
                           >
                             <FiExternalLink className="h-5 w-5" />
@@ -356,20 +359,13 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ openModal }) => {
             className="text-center py-12"
           >
             <div className="mx-auto w-24 h-24 text-slate-300 dark:text-slate-600 mb-4">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <FiAlertCircle className="w-full h-full" />
             </div>
             <h3 className="text-lg font-medium text-slate-900 dark:text-white">
-              No projects found
+              No matching projects found
             </h3>
             <p className="mt-2 text-slate-600 dark:text-slate-400">
-              Try adjusting your search or filter criteria
+              Try adjusting your search criteria or filter settings
             </p>
           </motion.div>
         )}
