@@ -1,69 +1,28 @@
-# React + TypeScript + Vite
+# 🧩 Django Portfolio Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive roadmap to help aspiring Django developers strategically plan, build, and showcase real-world projects.
 
-Currently, two official plugins are available:
+## 📌 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a visual and interactive guide designed to help Django learners build a **strong, skill-based portfolio** through well-structured project suggestions. It includes project complexity levels, estimated timeframes, required skills, and learning outcomes — all visualized through charts and filters.
 
-## Expanding the ESLint configuration
+The idea began as a personal guide to structure my own Django learning journey. After researching various platforms, resources, and community insights, I realized that many learners — especially those learning independently — struggle to find a clear path from beginner to advanced Django projects. So, I built this tool not only for myself, but also to **support others who are learning Django on their own**.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🎯 Features
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- 🧠 Categorized Projects (Beginner → Intermediate → Advanced)
+- ⏱ Estimated timelines for each project
+- 🛠 Skills you'll develop
+- 📊 Interactive Bubble Chart (Project Complexity vs Time)
+- 🔍 Filter by complexity
+- 🔐 Modal popups with detailed project info
+- 🌙 Dark mode toggle
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📚 Built With
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **React + TypeScript**
+- **Tailwind CSS**
+- **Chart.js**
+- **Vite** (Build tool)
+- **Lucide Icons**
+- Custom data modeling and filtering
