@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "./components/Header";
 import SkillsSection from "./components/SkillsSection";
 import ProjectsSection from "./components/ProjectsSection";
@@ -7,7 +7,7 @@ import AdvancedSection from "./components/AdvancedSection";
 import ShowcaseSection from "./components/ShowcaseSection";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import type { Project } from "./types/Project";
 import IntroSection from "./components/IntroSection";
 import AboutProject from "./components/AboutProject";

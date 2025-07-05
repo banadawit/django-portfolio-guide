@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiTwitter, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 
 const Footer = () => {
   const socialLinks = [

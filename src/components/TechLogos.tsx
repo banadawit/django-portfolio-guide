@@ -1,6 +1,4 @@
 // components/TechLogos.tsx
-import React from "react";
-
 export const PythonLogo = ({ className }: { className?: string }) => (
   <img src="/images/python-logo.svg" alt="Python" className={className} />
 );

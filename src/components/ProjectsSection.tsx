@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   FiClock,
   FiStar,
-  FiBookOpen,
   FiGithub,
   FiExternalLink,
   FiSearch,
