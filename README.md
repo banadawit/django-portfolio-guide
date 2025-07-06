@@ -158,7 +158,7 @@ If you find this useful or want to contribute (add more projects, improve design
 
 Have a question or want to collaborate? Feel free to reach out!
 
-👉 Email: banadawithunde@example.com
+👉 Email: banadawithunde@gmail.com
 
 👉 LinkedIn: [Bana Dawit LinkedIn](https://www.linkedin.com/in/bana-dawit-121810312/)
 
